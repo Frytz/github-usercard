@@ -160,8 +160,24 @@ function cardMaker(obj) {
   following.textContent = 'Followers: ' + obj.data.following;
   bio.textContent = 'Bio: ' + obj.data.bio;
   button.textContent = 'See Contributions';
-
-  button.addEventListener('click', () => {
+//eventListeners
+  followers.addEventListener('click', () =>{
+    axios.get(obj.data.followers_url)
+    .then (response => {
+      response.data.forEach (response => {
+        let followersTwo = response;
+        // return followersTwo;
+        console.log(followersTwo.url.name);
+        console.log(followersTwo);
+        
+      })
+      
+      // console.log(response.data)
+    })
+      
+    // console.log(obj.data.followers);
+  })
+button.addEventListener('click', () => {
     graph.classList.toggle('calendar-show');
     card.classList.toggle('card-open');
   })
