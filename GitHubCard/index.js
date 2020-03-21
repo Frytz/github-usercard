@@ -2,7 +2,7 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-
+// axios.get('https://api.github.com/users/frytz');
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -53,3 +53,194 @@ const followersArray = [];
   luishrd
   bigknell
 */
+// Dummy Url.
+const usersNames = [
+  "frytz", 
+  "Jrive204",
+  "tetondan",
+  "dustinmyers",
+  "justsml",
+  "luishrd",
+  "bigknell"
+  ];
+  console.log(usersNames);
+
+
+
+// Axios Test.
+const axiosTest = axios.get
+
+// Axios Test Data.
+
+//test function
+
+
+usersNames.forEach((userName) => {
+ const one = "https://api.github.com/users/" + userName;
+  console.log(userName);
+ 
+axiosTest(one)
+.then( response => {
+  let cards = document.querySelector('.cards');
+  cards.appendChild(cardMaker(response));
+  return response;
+
+
+// .then( response => {
+//   axios.get(response.data.followers_url)
+  // .then(response => {
+  //   response.data.forEach(el => {
+  //     axiosTest(one)
+  //     .then(response => {
+  //       let cards = document.querySelector('.cards');
+  //       cards.appendChild(cardMaker(response));
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  //   })
+    
+  })
+  .catch( err => {
+    console.log(err);
+  })
+
+.catch( err => {
+  console.log(err);
+})
+
+})
+function cardMaker(obj) {
+  // Create elements
+  let card = document.createElement('div');
+  let image = document.createElement('img');
+  let info = document.createElement('div');
+  let name = document.createElement('h3');
+  let username = document.createElement('p');
+  let location = document.createElement('p');
+  let profile = document.createElement('p');
+  let link = document.createElement('a');
+  let followers = document.createElement('p');
+  let following = document.createElement('p');
+  let bio = document.createElement('p');
+  let button = document.createElement('button');
+
+  // Attach elements to main div
+  card.appendChild(image);
+  card.appendChild(info);
+  info.appendChild(name);
+  info.appendChild(username);
+  info.appendChild(location);
+  info.appendChild(profile);
+  profile.appendChild(link);
+  info.appendChild(followers);
+  info.appendChild(following);
+  info.appendChild(bio);
+  info.appendChild(button);
+  
+  // Add classes as needed
+  card.classList.add('card');
+  info.classList.add('card-info');
+  name.classList.add('name');
+  username.classList.add('username');
+  button.classList.add('button');
+  // added css classes for buttons
+  followers.classList.add('button');
+  following.classList.add('button');
+  
+  // Add text content and image source
+  image.src = obj.data.avatar_url;
+  name.textContent = obj.data.name;
+  username.textContent = obj.data.login;
+  location.textContent = 'Location: ' + obj.data.location;
+  profile.textContent = 'Profile: ';
+  link.textContent = obj.data.html_url;
+  link.href = obj.data.html_url;
+  followers.textContent = 'Following: ' + obj.data.followers;
+  following.textContent = 'Followers: ' + obj.data.following;
+  bio.textContent = 'Bio: ' + obj.data.bio;
+  button.textContent = 'See Contributions';
+//eventListeners
+  followers.addEventListener('click', () =>{
+    axios.get(obj.data.followers_url)
+    .then (response => {
+      response.data.forEach (response => {
+        let followersTwo = response;
+        // return followersTwo;
+        console.log(followersTwo.url.name);
+        console.log(followersTwo);
+        
+      })
+      
+      // console.log(response.data)
+    })
+      
+    // console.log(obj.data.followers);
+  })
+button.addEventListener('click', () => {
+    graph.classList.toggle('calendar-show');
+    card.classList.toggle('card-open');
+  })
+
+  // Creating hidden div
+  // let graph = document.createElement('div');
+  // // Hidden div
+  // graph.classList.add('calendar');
+  // // Hidden div
+  // card.appendChild(graph);
+  // new GitHubCalendar(graph, obj.data.login, { responsive: true });
+  
+  return card;
+}
+
+
+
+// console.log(cards);
+
+// let gitName = document.createElement('h3');
+// gitName.classList.add('name');
+// gitName.textContent = data.login;
+// card.appendChild(gitName);
+// card.classList.add('card');
+
+// let name = document.createElement('h3');
+ 
+// cards.appendChild(name);
+
+// function cardCreator(image, userName, usersUserName, usersLocation, profileGitHubPage, followingUser, followedByUser, userBio) {
+//   //elements
+//   let card = document.createElement('div');
+//   let userImage = document.createElement('img');
+//   let cardInfo = document.createElement('div');
+//   let gitName = document.createElement('h3');
+//   let nameUser = document.createElement('p');
+//   let location = document.createElement('p');
+//   let profile = document.createElement('p');
+//   let profileAddress = document.createElement('a');
+//   let follows = document.createElement('p');
+//   let followed = document.createElement('p');
+//   let bio = document.createElement('p');
+
+//   //classes
+//   card.classList.add('card');
+//   cardInfo.classList.add('card-info');
+  
+//   nameUser.classList.add('username');
+  
+//   // appends
+//  card.appendChild(userImage);
+//  card.appendChild(cardInfo);
+//  cardInfo.append(name);
+//  cardInfo.appendChild(nameUser)
+//  cardInfo.appendChild(location);
+//  cardInfo.appendChild(profile);
+//  cardInfo.appendChild(profileAddress);
+//  cardInfo.appendChild(follows);
+//  cardInfo.appendChild(followed);
+//  cardInfo.appendChild(bio);
+ 
+//  //texts
+// }
+// conat
+// let firstCard = cardCreator();
+// cards.appendChild(firstCard);

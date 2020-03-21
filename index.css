@@ -123,5 +123,20 @@ body {
   margin: 3px 0 10px;
 }
 
+.button {
+  cursor: pointer;
+}
+.button:hover {
+  color: #1fc8db;
+}
 
-
+.calendar {
+  display: none;
+}
+.calendar-show {
+  display: inline-block;
+  position: relative;
+}
+.card-open {
+  flex-direction: column;
+}
